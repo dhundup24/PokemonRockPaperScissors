@@ -1,0 +1,10 @@
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\bin\Debug\WinterBreak2021.exe.config
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\bin\Debug\WinterBreak2021.exe
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\bin\Debug\WinterBreak2021.pdb
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\obj\Debug\WinterBreak2021.Properties.Resources.resources
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\obj\Debug\View.csproj.GenerateResource.cache
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\obj\Debug\View.csproj.CoreCompileInputs.cache
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\obj\Debug\WinterBreak2021.exe
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\obj\Debug\WinterBreak2021.pdb
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\obj\Debug\WinterBreak2021.Form1.resources
+C:\Users\dhund\source\repos\WinterBreak2021\WinterBreak2021\obj\Debug\View.csproj.AssemblyReference.cache

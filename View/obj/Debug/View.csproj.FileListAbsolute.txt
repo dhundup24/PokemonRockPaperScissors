@@ -1,0 +1,10 @@
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\obj\Debug\View.csproj.AssemblyReference.cache
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\obj\Debug\WinterBreak2021.Form1.resources
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\obj\Debug\View.csproj.GenerateResource.cache
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\bin\Debug\WinterBreak2021.exe.config
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\bin\Debug\WinterBreak2021.exe
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\bin\Debug\WinterBreak2021.pdb
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\obj\Debug\WinterBreak2021.Properties.Resources.resources
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\obj\Debug\View.csproj.CoreCompileInputs.cache
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\obj\Debug\WinterBreak2021.exe
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\View\obj\Debug\WinterBreak2021.pdb

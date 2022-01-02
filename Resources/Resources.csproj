@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\pokemonGameBattleScreen.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\pokemonGameBattleScreen.png" />
+  </ItemGroup>
+
+</Project>
