@@ -40,6 +40,8 @@ namespace WinterBreak2021
         private void pokemonGameStartButton_Click(object sender, EventArgs e)
         {
             this.Controls.Remove(pokemonGameStartButton);
+            this.Controls.Remove(HowToPlayButton);
+
             this.Invalidate(true);
 
         }

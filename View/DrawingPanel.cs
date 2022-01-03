@@ -22,6 +22,8 @@ namespace WinterBreak2021
         Image blastoise = Image.FromFile(@"..\..\..\Resources\Images\blastoise.png");
         Image howToPlayButton = Image.FromFile(@"..\..\..\Resources\Images\HowToPlayButton.png");
         Image gameLogo2 = Image.FromFile(@"..\..\..\Resources\Images\PokemonRockPaperScissorsLogo.png");
+        Image gameLogo3 = Image.FromFile(@"..\..\..\Resources\Images\PokemonRockPaperScissorsLogo2.png");
+
 
 
 
@@ -39,7 +41,10 @@ namespace WinterBreak2021
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(background, 0, 0, width, height);
-            e.Graphics.DrawImage(gameLogo1, 250, 150, 400, 170);
+            e.Graphics.DrawImage(gameLogo1, 240, 150, 400, 170);
+            e.Graphics.DrawImage(gameLogo3, 150, 300, 680, 160);
+
+
             //CreateGUIButton(o, e, howToPlayButton, 800, 600);
             //e.Graphics.DrawImage(howToPlayButton, 600, 200, 300, 300);
             //e.Graphics.DrawImage(gameLogo2, 300, 200, 300, 300);

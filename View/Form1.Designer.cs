@@ -39,7 +39,7 @@ namespace WinterBreak2021
             // pokemonGameStartButton
             // 
             this.pokemonGameStartButton.Image = ((System.Drawing.Image)(resources.GetObject("pokemonGameStartButton.Image")));
-            this.pokemonGameStartButton.Location = new System.Drawing.Point(347, 436);
+            this.pokemonGameStartButton.Location = new System.Drawing.Point(341, 462);
             this.pokemonGameStartButton.Name = "pokemonGameStartButton";
             this.pokemonGameStartButton.Size = new System.Drawing.Size(219, 82);
             this.pokemonGameStartButton.TabIndex = 0;
