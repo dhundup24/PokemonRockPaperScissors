@@ -12,13 +12,18 @@ namespace WinterBreak2021
     {
         bool isBackgroundDrawn = false;
 
+
         Image background = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameBackground.png");
 
         Image battleScreen = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameBattleScreen.png");
-        Image gameLogo = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameLogo.png");
+        Image gameLogo1 = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameLogo.png");
         Image charizard = Image.FromFile(@"..\..\..\Resources\Images\Charizard.png");
         Image venusaur = Image.FromFile(@"..\..\..\Resources\Images\venusaur.png");
         Image blastoise = Image.FromFile(@"..\..\..\Resources\Images\blastoise.png");
+        Image howToPlayButton = Image.FromFile(@"..\..\..\Resources\Images\HowToPlayButton.png");
+        Image gameLogo2 = Image.FromFile(@"..\..\..\Resources\Images\PokemonRockPaperScissorsLogo.png");
+
+
 
 
 
@@ -34,7 +39,12 @@ namespace WinterBreak2021
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(background, 0, 0, width, height);
-            e.Graphics.DrawImage(gameLogo, 250, 150, 400, 170);
+            e.Graphics.DrawImage(gameLogo1, 250, 150, 400, 170);
+            //CreateGUIButton(o, e, howToPlayButton, 800, 600);
+            //e.Graphics.DrawImage(howToPlayButton, 600, 200, 300, 300);
+            //e.Graphics.DrawImage(gameLogo2, 300, 200, 300, 300);
+
+
 
 
             isBackgroundDrawn = true;
@@ -47,9 +57,33 @@ namespace WinterBreak2021
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(battleScreen, 0, 0, width, height);
-            //e.Graphics.DrawImage(charizard, -50, 200, 400, 300);
-            //e.Graphics.DrawImage(venusaur, 300, 200, 300, 300);
-            //e.Graphics.DrawImage(blastoise, 600, 200, 300, 300);
+            charizard = resizeImage(charizard, new Size(300, 280));
+            CreateGUIButton(o, e, charizard, 0, 200 );
+
+            venusaur = resizeImage(venusaur, new Size(300, 280));
+            CreateGUIButton(o, e, venusaur, 300, 200);
+
+            blastoise = resizeImage(blastoise, new Size(300, 280));
+            CreateGUIButton(o, e, blastoise, 600, 200);
+
+            
+        }
+
+        public static Image resizeImage(Image imgToResize, Size size)
+        {
+            return (Image)(new Bitmap(imgToResize, size));
+        }
+
+
+        public void CreateGUIButton(object sender, EventArgs e, Image i, int x, int y)
+        {
+            Button newButton = new Button();
+            
+            newButton.Image = i;
+            newButton.Size = new Size(270, 270);
+            newButton.Location = new Point(x, y);
+            this.Controls.Add(newButton);
+
         }
 
 
@@ -66,7 +100,7 @@ namespace WinterBreak2021
             drawBattleScreen(battleScreen, e);
             }
 
-            base.OnPaint(e);
+            //base.OnPaint(e);
         }
     }
 }

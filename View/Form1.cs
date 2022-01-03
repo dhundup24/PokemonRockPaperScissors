@@ -14,6 +14,7 @@ namespace WinterBreak2021
     {
         private DrawingPanel drawingPanel;
 
+        //public delegate void CreateGUIButton(object sender, EventArgs e);
 
 
         private const int viewSize = 690;
@@ -30,7 +31,6 @@ namespace WinterBreak2021
             drawingPanel.Size = new Size(900, viewSize);
             this.Controls.Add(drawingPanel);
 
-            this.Shown += CreateButtonDelegate;
 
             this.Invalidate(true);
 
@@ -44,17 +44,18 @@ namespace WinterBreak2021
 
         }
 
-        private void CreateButtonDelegate(object sender, EventArgs e)
+        
+
+        //private void label1_Click(object sender, EventArgs e)
+        //{
+        //}
+
+        private void HowToPlayButton_Click(object sender, EventArgs e)
         {
-            Button newButton = new Button();
-            this.Controls.Add(newButton);
-            newButton.Text = "Created Button";
-            newButton.Location = new Point(70, 70);
-            newButton.Size = new Size(50, 100);
-            newButton.Location = new Point(20, 50);
+
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void label1_Click_1(object sender, EventArgs e)
         {
 
         }
