@@ -11,6 +11,8 @@ namespace WinterBreak2021
     public class DrawingPanel : Panel
     {
         bool isBackgroundDrawn = false;
+        bool isBattleScreenDrawn = false;
+        bool isHowToPlayScreenDrawn = false;
 
 
         Image background = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameBackground.png");
@@ -42,7 +44,7 @@ namespace WinterBreak2021
             int height = 690;
             e.Graphics.DrawImage(background, 0, 0, width, height);
             e.Graphics.DrawImage(gameLogo1, 240, 150, 400, 170);
-            e.Graphics.DrawImage(gameLogo3, 150, 300, 680, 160);
+            e.Graphics.DrawImage(gameLogo3, 110, 300, 680, 160);
 
 
             //CreateGUIButton(o, e, howToPlayButton, 800, 600);
@@ -53,6 +55,9 @@ namespace WinterBreak2021
 
 
             isBackgroundDrawn = true;
+            isBattleScreenDrawn = false;
+            isHowToPlayScreenDrawn = false;
+
         }
 
         public void drawBattleScreen(object o, PaintEventArgs e)
@@ -71,7 +76,16 @@ namespace WinterBreak2021
             blastoise = resizeImage(blastoise, new Size(300, 280));
             CreateGUIButton(o, e, blastoise, 600, 200);
 
-            
+            isBackgroundDrawn = false;
+            isHowToPlayScreenDrawn = false;
+            isBattleScreenDrawn = true;
+        }
+
+        public void drawHowToPlayScreen(object o, PaintEventArgs e)
+        {
+            isBackgroundDrawn = false;
+            isHowToPlayScreenDrawn = true;
+            isBattleScreenDrawn = false;
         }
 
         public static Image resizeImage(Image imgToResize, Size size)
@@ -100,12 +114,23 @@ namespace WinterBreak2021
                 drawBackground(background, e);
             }
 
-            else
+            if(isBattleScreenDrawn == true)
             {
-            drawBattleScreen(battleScreen, e);
+                drawBattleScreen(battleScreen, e);
             }
 
-            //base.OnPaint(e);
+            //if (isHowToPlayScreenDrawn == false)
+            //{
+            //    drawHowToPlayScreen();
+            //}
+
+
+            //else
+            //{
+            //drawBattleScreen(battleScreen, e);
+            //}
+
+            base.OnPaint(e);
         }
     }
 }

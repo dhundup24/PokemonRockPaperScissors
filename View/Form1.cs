@@ -41,7 +41,6 @@ namespace WinterBreak2021
         {
             this.Controls.Remove(pokemonGameStartButton);
             this.Controls.Remove(HowToPlayButton);
-
             this.Invalidate(true);
 
         }
@@ -54,6 +53,9 @@ namespace WinterBreak2021
 
         private void HowToPlayButton_Click(object sender, EventArgs e)
         {
+            this.Controls.Remove(pokemonGameStartButton);
+            this.Controls.Remove(HowToPlayButton);
+            this.Invalidate(true);
 
         }
 
