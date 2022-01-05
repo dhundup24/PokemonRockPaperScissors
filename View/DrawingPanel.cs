@@ -9,10 +9,8 @@ using System.Windows.Forms;
 namespace WinterBreak2021
 {
     public class DrawingPanel : Panel
-    {
-        public bool isBackgroundDrawn = false;
-        public bool isBattleScreenDrawn = false;
-        public bool isHowToPlayScreenDrawn = false;
+    {     
+        public string drawThisBackground;
 
 
         Image background = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameBackground.png");
@@ -52,18 +50,6 @@ namespace WinterBreak2021
             e.Graphics.DrawImage(gameLogo1, 240, 150, 400, 170);
             e.Graphics.DrawImage(gameLogo2, 110, 300, 680, 160);
 
-
-            //CreateGUIButton(o, e, howToPlayButton, 800, 600);
-            //e.Graphics.DrawImage(howToPlayButton, 600, 200, 300, 300);
-            //e.Graphics.DrawImage(gameLogo2, 300, 200, 300, 300);
-
-
-
-
-            isBackgroundDrawn = true;
-            isBattleScreenDrawn = false;
-            isHowToPlayScreenDrawn = false;
-
         }
 
         public void drawBattleScreen(object o, PaintEventArgs e)
@@ -81,10 +67,6 @@ namespace WinterBreak2021
 
             blastoise = resizeImage(blastoise, new Size(300, 280));
             CreateGUIButton(o, e, blastoise, 600, 200);
-
-            isBackgroundDrawn = false;
-            isHowToPlayScreenDrawn = false;
-            isBattleScreenDrawn = true;
         }
 
         public void drawHowToPlayScreen(object o, PaintEventArgs e)
@@ -94,12 +76,55 @@ namespace WinterBreak2021
             e.Graphics.DrawImage(howToPlayBackground, 0, 0, width, height);
 
             drawInstructions(e);
-
-            isBackgroundDrawn = false;
-            isHowToPlayScreenDrawn = true;
-            isBattleScreenDrawn = false;
         }
 
+
+        public static Image resizeImage(Image imgToResize, Size size)
+        {
+            return (Image)(new Bitmap(imgToResize, size));
+        }
+
+
+        public void CreateGUIButton(object sender, EventArgs e, Image i, int x, int y)
+        {
+            Button newButton = new Button();
+            
+            newButton.Image = i;
+            newButton.Size = new Size(270, 270);
+            newButton.Location = new Point(x, y);
+            this.Controls.Add(newButton);
+
+        }
+
+
+        /// <summary>
+        /// onPaint tells the drawingPanel which background to draw
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            if (drawThisBackground == "homeScreen")
+            {
+                drawBackground(background, e);
+            }
+
+            else if(drawThisBackground == "battleScreen")
+            {
+                drawBattleScreen(battleScreen, e);
+            }
+
+            else if (drawThisBackground == "howToPlayScreen")
+            {
+                drawHowToPlayScreen(howToPlayBackground, e);
+            }
+
+            base.OnPaint(e);
+        }
+
+        /// <summary>
+        /// draws all the instructions for how to play the game in different textboxes containing strings.
+        /// </summary>
+        /// <param name="e"></param>
         private void drawInstructions(PaintEventArgs e)
         {
             // Create string to draw.
@@ -206,44 +231,6 @@ namespace WinterBreak2021
             e.Graphics.DrawString(drawString3, drawFont4, drawBrush3, drawRect3, drawFormat3);
 
         }
-
-        public static Image resizeImage(Image imgToResize, Size size)
-        {
-            return (Image)(new Bitmap(imgToResize, size));
-        }
-
-
-        public void CreateGUIButton(object sender, EventArgs e, Image i, int x, int y)
-        {
-            Button newButton = new Button();
-            
-            newButton.Image = i;
-            newButton.Size = new Size(270, 270);
-            newButton.Location = new Point(x, y);
-            this.Controls.Add(newButton);
-
-        }
-
-
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            if (isBackgroundDrawn == false)
-            {
-                drawBackground(background, e);
-            }
-
-            else if(isBattleScreenDrawn == false)
-            {
-                drawBattleScreen(battleScreen, e);
-            }
-
-            else if (isHowToPlayScreenDrawn == false)
-            {
-                drawHowToPlayScreen(howToPlayBackground, e);
-            }
-
-            base.OnPaint(e);
-        }
     }
 }
+        

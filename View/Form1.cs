@@ -32,7 +32,7 @@ namespace WinterBreak2021
             drawingPanel.Location = new Point(0, 0);
             drawingPanel.Size = new Size(900, viewSize);
             this.Controls.Add(drawingPanel);
-
+            drawingPanel.drawThisBackground = "homeScreen";
 
             this.Invalidate(true);
 
@@ -42,10 +42,8 @@ namespace WinterBreak2021
         private void pokemonGameStartButton_Click(object sender, EventArgs e)
         {
             this.Controls.Remove(pokemonGameStartButton);
-            this.Controls.Remove(HowToPlayButton);
-            drawingPanel.isBackgroundDrawn = true;
-            drawingPanel.isBattleScreenDrawn = false;
-            drawingPanel.isHowToPlayScreenDrawn = true;
+            this.Controls.Remove(HowToPlayButton);           
+            drawingPanel.drawThisBackground = "battleScreen";
             this.Invalidate(true);
 
         }
@@ -54,9 +52,7 @@ namespace WinterBreak2021
         {
             this.Controls.Remove(pokemonGameStartButton);
             this.Controls.Remove(HowToPlayButton);
-            drawingPanel.isBackgroundDrawn = true;
-            drawingPanel.isBattleScreenDrawn = true;
-            drawingPanel.isHowToPlayScreenDrawn = false;
+            drawingPanel.drawThisBackground = "howToPlayScreen";
             this.Invalidate(true);
 
         }
