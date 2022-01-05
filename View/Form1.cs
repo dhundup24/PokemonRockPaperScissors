@@ -12,6 +12,8 @@ namespace WinterBreak2021
 {
     public partial class Form1 : Form
     {
+       
+
         private DrawingPanel drawingPanel;
 
         //public delegate void CreateGUIButton(object sender, EventArgs e);
@@ -41,20 +43,20 @@ namespace WinterBreak2021
         {
             this.Controls.Remove(pokemonGameStartButton);
             this.Controls.Remove(HowToPlayButton);
+            drawingPanel.isBackgroundDrawn = true;
+            drawingPanel.isBattleScreenDrawn = false;
+            drawingPanel.isHowToPlayScreenDrawn = true;
             this.Invalidate(true);
 
         }
-
-        
-
-        //private void label1_Click(object sender, EventArgs e)
-        //{
-        //}
 
         private void HowToPlayButton_Click(object sender, EventArgs e)
         {
             this.Controls.Remove(pokemonGameStartButton);
             this.Controls.Remove(HowToPlayButton);
+            drawingPanel.isBackgroundDrawn = true;
+            drawingPanel.isBattleScreenDrawn = true;
+            drawingPanel.isHowToPlayScreenDrawn = false;
             this.Invalidate(true);
 
         }
