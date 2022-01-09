@@ -16,8 +16,6 @@ namespace WinterBreak2021
 
         private DrawingPanel drawingPanel;
 
-        //public delegate void CreateGUIButton(object sender, EventArgs e);
-
 
         private const int viewSize = 690;
 
@@ -33,6 +31,7 @@ namespace WinterBreak2021
             drawingPanel.Size = new Size(900, viewSize);
             this.Controls.Add(drawingPanel);
             drawingPanel.drawThisBackground = "homeScreen";
+            
 
             this.Invalidate(true);
 
@@ -45,7 +44,7 @@ namespace WinterBreak2021
             this.Controls.Remove(HowToPlayButton);           
             drawingPanel.drawThisBackground = "battleScreen";
             this.Invalidate(true);
-
+            
         }
 
         private void HowToPlayButton_Click(object sender, EventArgs e)
