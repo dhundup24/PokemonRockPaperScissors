@@ -49,11 +49,12 @@ namespace WinterBreak2021
             venusaur = resizeImage(venusaur, new Size(300, 280));
             blastoise = resizeImage(blastoise, new Size(300, 280));
             homeButtonImage = resizeImage(homeButtonImage, new Size(100, 100));
+            startButtonImage = resizeImage(startButtonImage, new Size(300, 75));
 
             charizardButton = CreateGUIButton(charizard, 0, 200, new Size(270, 270), CharizardButton_Click);
             venusaurButton = CreateGUIButton(venusaur, 300, 200, new Size(270, 270), VenusaurButton_Click);
             blastoiseButton = CreateGUIButton(blastoise, 600, 200, new Size(270, 270), BlastoiseButton_Click);
-            homeButton = CreateGUIButton(homeButtonImage, 0, 600, new Size(70, 70), homeButton_Click);
+            homeButton = CreateGUIButton(homeButtonImage, 0, 620, new Size(70, 70), homeButton_Click);
             startButton = CreateGUIButton(startButtonImage, 341, 462, new Size(219, 82), startButton_Click);
             HowToPlayButton = CreateGUIButton(howToPlayImage, 732, 611, new Size(166, 78), howToPlayButton_Click);
         }
