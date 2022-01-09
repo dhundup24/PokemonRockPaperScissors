@@ -30,31 +30,9 @@ namespace WinterBreak2021
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.pokemonGameStartButton = new System.Windows.Forms.Button();
-            this.HowToPlayButton = new System.Windows.Forms.Button();
             this.gameLogo2 = new System.Windows.Forms.Label();
             this.RockPaperScissorsLogo = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // pokemonGameStartButton
-            // 
-            this.pokemonGameStartButton.Image = ((System.Drawing.Image)(resources.GetObject("pokemonGameStartButton.Image")));
-            this.pokemonGameStartButton.Location = new System.Drawing.Point(341, 462);
-            this.pokemonGameStartButton.Name = "pokemonGameStartButton";
-            this.pokemonGameStartButton.Size = new System.Drawing.Size(219, 82);
-            this.pokemonGameStartButton.TabIndex = 0;
-            this.pokemonGameStartButton.UseVisualStyleBackColor = true;
-            this.pokemonGameStartButton.Click += new System.EventHandler(this.pokemonGameStartButton_Click);
-            // 
-            // HowToPlayButton
-            // 
-            this.HowToPlayButton.Image = ((System.Drawing.Image)(resources.GetObject("HowToPlayButton.Image")));
-            this.HowToPlayButton.Location = new System.Drawing.Point(732, 611);
-            this.HowToPlayButton.Name = "HowToPlayButton";
-            this.HowToPlayButton.Size = new System.Drawing.Size(166, 78);
-            this.HowToPlayButton.TabIndex = 1;
-            this.HowToPlayButton.UseVisualStyleBackColor = true;
-            this.HowToPlayButton.Click += new System.EventHandler(this.HowToPlayButton_Click);
             // 
             // gameLogo2
             // 
@@ -79,8 +57,6 @@ namespace WinterBreak2021
             this.ClientSize = new System.Drawing.Size(1217, 871);
             this.Controls.Add(this.RockPaperScissorsLogo);
             this.Controls.Add(this.gameLogo2);
-            this.Controls.Add(this.HowToPlayButton);
-            this.Controls.Add(this.pokemonGameStartButton);
             this.Name = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -88,9 +64,6 @@ namespace WinterBreak2021
         }
 
         #endregion
-
-        private System.Windows.Forms.Button pokemonGameStartButton;
-        private System.Windows.Forms.Button HowToPlayButton;
         private System.Windows.Forms.Label gameLogo2;
         private System.Windows.Forms.Label RockPaperScissorsLogo;
     }

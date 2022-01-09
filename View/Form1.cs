@@ -40,8 +40,8 @@ namespace WinterBreak2021
 
         private void pokemonGameStartButton_Click(object sender, EventArgs e)
         {
-            this.Controls.Remove(pokemonGameStartButton);
-            this.Controls.Remove(HowToPlayButton);           
+            this.Controls.Remove(drawingPanel.startButton);
+            this.Controls.Remove(drawingPanel.HowToPlayButton);           
             drawingPanel.drawThisBackground = "battleScreen";
             this.Invalidate(true);
             
@@ -49,8 +49,8 @@ namespace WinterBreak2021
 
         private void HowToPlayButton_Click(object sender, EventArgs e)
         {
-            this.Controls.Remove(pokemonGameStartButton);
-            this.Controls.Remove(HowToPlayButton);
+            this.Controls.Remove(drawingPanel.startButton);
+            this.Controls.Remove(drawingPanel.HowToPlayButton);
             drawingPanel.drawThisBackground = "howToPlayScreen";
             this.Invalidate(true);
 

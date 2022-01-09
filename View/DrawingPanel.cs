@@ -13,15 +13,16 @@ namespace WinterBreak2021
         public string drawThisBackground;
 
 
-        //public delegate void ClickHandler(Object sender, EventArgs e);
-
-
+        //These below are for the opening screen
         Image background = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameBackground.png");
         Image battleScreen = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameBattleScreen.png");
         Image gameLogo1 = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameLogo.png");
         Image howToPlayButton = Image.FromFile(@"..\..\..\Resources\Images\HowToPlayButton.png");
+        Image startButtonImage = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameStartButton.png");
+        Image howToPlayImage = Image.FromFile(@"..\..\..\Resources\Images\HowToPlayButton.png");
 
 
+        //These below are for the battle screen
         Image charizard = Image.FromFile(@"..\..\..\Resources\Images\Charizard.png");
         Image venusaur = Image.FromFile(@"..\..\..\Resources\Images\venusaur.png");
         Image blastoise = Image.FromFile(@"..\..\..\Resources\Images\blastoise.png");
@@ -31,6 +32,9 @@ namespace WinterBreak2021
         public Button venusaurButton = new Button();
         public Button blastoiseButton = new Button();
         public Button homeButton = new Button();
+        public Button startButton = new Button();
+        public Button HowToPlayButton = new Button();
+
 
 
 
@@ -46,22 +50,32 @@ namespace WinterBreak2021
             blastoise = resizeImage(blastoise, new Size(300, 280));
             homeButtonImage = resizeImage(homeButtonImage, new Size(100, 100));
 
-            charizardButton = CreateGUIButton( charizard, 0, 200, new Size(270, 270), CharizardButton_Click);
-            venusaurButton = CreateGUIButton( venusaur, 300, 200, new Size(270, 270), VenusaurButton_Click);
-            blastoiseButton = CreateGUIButton( blastoise, 600, 200, new Size(270, 270), BlastoiseButton_Click);
-            homeButton = CreateGUIButton( homeButtonImage, 0, 600, new Size(70, 70), homeButton_Click);
-            //charizardButton.Click += CharizardButton_Click;
-            //venusaurButton.Click += VenusaurButton_Click;
-            //blastoiseButton.Click += BlastoiseButton_Click;
-            //homeButton.Click += homeButton_Click;
+            charizardButton = CreateGUIButton(charizard, 0, 200, new Size(270, 270), CharizardButton_Click);
+            venusaurButton = CreateGUIButton(venusaur, 300, 200, new Size(270, 270), VenusaurButton_Click);
+            blastoiseButton = CreateGUIButton(blastoise, 600, 200, new Size(270, 270), BlastoiseButton_Click);
+            homeButton = CreateGUIButton(homeButtonImage, 0, 600, new Size(70, 70), homeButton_Click);
+            startButton = CreateGUIButton(startButtonImage, 341, 462, new Size(219, 82), startButton_Click);
+            HowToPlayButton = CreateGUIButton(howToPlayImage, 732, 611, new Size(166, 78), howToPlayButton_Click);
         }
 
-        
+        private void howToPlayButton_Click(object sender, EventArgs e)
+        {
+            drawThisBackground = "howToPlayScreen";
+            this.Invalidate(true);
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            drawThisBackground = "battleScreen";
+            this.Invalidate(true);
+        }
 
         private void BlastoiseButton_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
+
+
 
         private void VenusaurButton_Click(object sender, EventArgs e)
         {
@@ -96,6 +110,10 @@ namespace WinterBreak2021
             e.Graphics.DrawImage(gameLogo1, 240, 150, 400, 170);
             e.Graphics.DrawImage(gameLogo2, 110, 300, 680, 160);
 
+            this.Controls.Add(startButton);
+            this.Controls.Add(HowToPlayButton);
+
+
         }
 
         public void drawBattleScreen(object o, PaintEventArgs e)
@@ -105,12 +123,15 @@ namespace WinterBreak2021
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(battleScreen, 0, 0, width, height);
-            
+
 
             this.Controls.Add(homeButton);
             this.Controls.Add(charizardButton);
             this.Controls.Add(blastoiseButton);
             this.Controls.Add(venusaurButton);
+
+            this.Controls.Remove(startButton);
+            this.Controls.Remove(HowToPlayButton);
 
 
             drawCommandPrompt(e);
@@ -125,12 +146,15 @@ namespace WinterBreak2021
             e.Graphics.DrawImage(howToPlayBackground, 0, 0, width, height);
 
             homeButtonImage = resizeImage(homeButtonImage, new Size(100, 100));
-            homeButton = CreateGUIButton( homeButtonImage, 0, 630, new Size(70, 70), homeButton_Click);
+            //homeButton = CreateGUIButton( homeButtonImage, 0, 630, new Size(70, 70), homeButton_Click);
+            this.Controls.Remove(startButton);
+            this.Controls.Remove(HowToPlayButton);
+            this.Controls.Add(homeButton);
 
             drawInstructions(e);
         }
 
-        public Button CreateGUIButton( Image i, int x, int y, Size size, EventHandler c)
+        public Button CreateGUIButton(Image i, int x, int y, Size size, EventHandler c)
         {
 
             Button newButton = new Button();
@@ -174,23 +198,9 @@ namespace WinterBreak2021
                 drawHowToPlayScreen(howToPlayBackground, e);
             }
 
-                base.OnPaint(e);
-            
+            base.OnPaint(e);
+
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
