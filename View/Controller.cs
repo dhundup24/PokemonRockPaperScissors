@@ -27,7 +27,6 @@ namespace WinterBreak2021
 
         public void determineWinner(string playersChoice)
         {
-            //string gameResult = "";
             this.playersChoice = playersChoice;
 
             switch (playersChoice)
@@ -35,51 +34,51 @@ namespace WinterBreak2021
                 case "Blastoise":
                     if(CPUsChoice == "Blastoise")
                     {
-                        gameResult = "Draw! You and your opponent used the same Pokemon!";
+                        gameResult = "Draw! You and your opponent both used Blastoise!";
                     }
 
                     if (CPUsChoice == "Venusaur")
                     {
-                        gameResult = "You Lose! Your opponent used Venusaur!";
+                        gameResult = "You Lose! Your opponent's Venusaur beat your Blastoise!";
                     }
 
                     if (CPUsChoice == "Charizard")
                     {
-                        gameResult = "You Win! Your opponent used Charizard!";
+                        gameResult = "You Win! Your Blastoise beat your opponent's Charizard!";
                     }
                     break;
 
                 case "Venusaur":
                     if (CPUsChoice == "Venusaur")
                     {
-                        gameResult = "Draw! You and your opponent used the same Pokemon!";
+                        gameResult = "Draw! You and your opponent both used Venusaur!";
                     }
 
                     if (CPUsChoice == "Blastoise")
                     {
-                        gameResult = "You Win! Your opponent used Blastoise!";
+                        gameResult = "You Win! Your Venusaur beat your opponent's Blastoise!";
                     }
 
                     if (CPUsChoice == "Charizard")
                     {
-                        gameResult = "You Lose! Your opponent used Charizard!";
+                        gameResult = "You Lose! Your opponent's Charizard beat your Venusaur!";
                     }
                     break;
 
                 case "Charizard":
                     if (CPUsChoice == "Charizard")
                     {
-                        gameResult = "Draw! You and your opponent used the same Pokemon!";
+                        gameResult = "Draw! You and your opponent both used Charizard!";
                     }
 
                     if (CPUsChoice == "Blastoise")
                     {
-                        gameResult = "You Lose! Your opponent used Blastoise!";
+                        gameResult = "You Lose! Your opponent's Blastoise beat your Charizard!";
                     }
 
                     if (CPUsChoice == "Venusaur")
                     {
-                        gameResult = "You Win! Your opponent used Venusaur!";
+                        gameResult = "You Win! Your Charizard beat your opponent's Venusaur!";
                     }
                     break;
             }
