@@ -47,7 +47,7 @@ namespace WinterBreak2021
         public DrawingPanel()
         {
             this.DoubleBuffered = true;
-            c = new Controller();
+            
             charizard = resizeImage(charizard, new Size(300, 280));
             venusaur = resizeImage(venusaur, new Size(300, 280));
             blastoise = resizeImage(blastoise, new Size(300, 280));
@@ -77,7 +77,7 @@ namespace WinterBreak2021
         private void BlastoiseButton_Click(object sender, EventArgs e)
         {
             this.drawThisBackground = "resultsScreen";
-
+            c = new Controller();
             c.determineWinner("Blastoise");
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
@@ -92,7 +92,7 @@ namespace WinterBreak2021
         private void VenusaurButton_Click(object sender, EventArgs e)
         {
             this.drawThisBackground = "resultsScreen";
-
+            c = new Controller();
             c.determineWinner("Venusaur");
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
@@ -106,7 +106,7 @@ namespace WinterBreak2021
         private void CharizardButton_Click(object sender, EventArgs e)
         {
             this.drawThisBackground = "resultsScreen";
-
+            c = new Controller();
             c.determineWinner("Charizard");
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
