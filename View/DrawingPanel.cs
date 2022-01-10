@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace WinterBreak2021
 {
     public class DrawingPanel : Panel
     {
         public string drawThisBackground;
+        private Controller c; 
 
 
         //These below are for the opening screen
@@ -28,6 +28,9 @@ namespace WinterBreak2021
         Image blastoise = Image.FromFile(@"..\..\..\Resources\Images\blastoise.png");
         Image homeButtonImage = Image.FromFile(@"..\..\..\Resources\Images\homeButton.png");
 
+        Image resultsScreenBackground = Image.FromFile(@"..\..\..\Resources\Images\resultsScreen.png");
+
+
         public Button charizardButton = new Button();
         public Button venusaurButton = new Button();
         public Button blastoiseButton = new Button();
@@ -44,7 +47,7 @@ namespace WinterBreak2021
         public DrawingPanel()
         {
             this.DoubleBuffered = true;
-
+            c = new Controller();
             charizard = resizeImage(charizard, new Size(300, 280));
             venusaur = resizeImage(venusaur, new Size(300, 280));
             blastoise = resizeImage(blastoise, new Size(300, 280));
@@ -73,30 +76,54 @@ namespace WinterBreak2021
 
         private void BlastoiseButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.drawThisBackground = "resultsScreen";
+
+            c.determineWinner("Blastoise");
+            this.Controls.Remove(blastoiseButton);
+            this.Controls.Remove(charizardButton);
+            this.Controls.Remove(venusaurButton);
+
+            this.Invalidate(true);
+
         }
 
 
 
         private void VenusaurButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.drawThisBackground = "resultsScreen";
+
+            c.determineWinner("Venusaur");
+            this.Controls.Remove(blastoiseButton);
+            this.Controls.Remove(charizardButton);
+            this.Controls.Remove(venusaurButton);
+
+            this.Invalidate(true);
+
+
         }
 
         private void CharizardButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.drawThisBackground = "resultsScreen";
+
+            c.determineWinner("Charizard");
+            this.Controls.Remove(blastoiseButton);
+            this.Controls.Remove(charizardButton);
+            this.Controls.Remove(venusaurButton);
+
+            this.Invalidate(true);
+
+
         }
 
         private void homeButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(Controls);
             this.drawThisBackground = "homeScreen";
             this.Controls.Remove(homeButton);
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
-            //this.Controls.OfType<Button>().ToList().ForEach(btn => btn.Dispose());
 
             this.Invalidate(true);
         }
@@ -136,7 +163,13 @@ namespace WinterBreak2021
 
 
             drawCommandPrompt(e);
+        }
 
+        public void drawResultsScreen(PaintEventArgs e)
+        {
+            int width = 1050;
+            int height = 700;
+            e.Graphics.DrawImage(resultsScreenBackground, 0, 0, width, height);
 
         }
 
@@ -147,7 +180,6 @@ namespace WinterBreak2021
             e.Graphics.DrawImage(howToPlayBackground, 0, 0, width, height);
 
             homeButtonImage = resizeImage(homeButtonImage, new Size(100, 100));
-            //homeButton = CreateGUIButton( homeButtonImage, 0, 630, new Size(70, 70), homeButton_Click);
             this.Controls.Remove(startButton);
             this.Controls.Remove(HowToPlayButton);
             this.Controls.Add(homeButton);
@@ -165,7 +197,6 @@ namespace WinterBreak2021
             newButton.Image = i;
             newButton.Size = size;
             newButton.Location = new Point(x, y);
-            //this.Controls.Add(newButton);
             return newButton;
         }
 
@@ -191,12 +222,18 @@ namespace WinterBreak2021
             else if (drawThisBackground == "battleScreen")
             {
                 drawBattleScreen(battleScreen, e);
-
+                //drawGameResults(e, c.gameResult);
             }
 
             else if (drawThisBackground == "howToPlayScreen")
             {
                 drawHowToPlayScreen(howToPlayBackground, e);
+            }
+
+            else if(drawThisBackground == "resultsScreen")
+            {
+                drawResultsScreen(e);
+                drawGameResults(e, c.gameResult);
             }
 
             base.OnPaint(e);
@@ -205,7 +242,33 @@ namespace WinterBreak2021
 
 
 
+        private void drawGameResults(PaintEventArgs e, String drawString)
+        {
+            // Create string to draw.
+            // drawString = "You are now playing against a CPU. Please select one of the pokemon of your choice!";
 
+            // Create font and brush.
+            Font drawFont3 = new Font("Arial", 25);
+            SolidBrush drawBrush = new SolidBrush(Color.Black);
+
+            // Create rectangle for drawing.
+            float x = 200.0F;
+            float y = 0.0F;
+            float width1 = 500.0F;
+            float height1 = 120.0F;
+            RectangleF drawRect = new RectangleF(x, y, width1, height1);
+
+            // Draw rectangle to screen.
+            Pen whitePen = new Pen(Color.Black);
+            e.Graphics.DrawRectangle(whitePen, x, y, width1, height1);
+
+            // Set format of string.
+            StringFormat drawFormat = new StringFormat();
+            drawFormat.Alignment = StringAlignment.Center;
+
+            // Draw string to screen.
+            e.Graphics.DrawString(drawString, drawFont3, drawBrush, drawRect, drawFormat);
+        }
 
 
         private void drawCommandPrompt(PaintEventArgs e)

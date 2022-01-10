@@ -17,3 +17,7 @@ C:\Users\dhund\source\repos\PokemonRockPaperScissors\Controller\obj\Debug\netcor
 C:\Users\dhund\source\repos\PokemonRockPaperScissors\Controller\obj\Debug\netcoreapp3.1\Controller.csproj.CoreCompileInputs.cache
 C:\Users\dhund\source\repos\PokemonRockPaperScissors\Controller\obj\Debug\netcoreapp3.1\Controller.dll
 C:\Users\dhund\source\repos\PokemonRockPaperScissors\Controller\obj\Debug\netcoreapp3.1\Controller.pdb
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\Controller\bin\Debug\netcoreapp3.1\Model.dll
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\Controller\bin\Debug\netcoreapp3.1\Model.pdb
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\Controller\obj\Debug\netcoreapp3.1\Controller.csproj.AssemblyReference.cache
+C:\Users\dhund\source\repos\PokemonRockPaperScissors\Controller\obj\Debug\netcoreapp3.1\Controller.csproj.CopyComplete
