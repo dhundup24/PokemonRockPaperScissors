@@ -192,17 +192,17 @@ namespace WinterBreak2021
         public void drawResultsScreen(PaintEventArgs e, SoundPlayer song, SoundPlayer song2)
         {
             e.Graphics.DrawImage(resultsScreenBackground, 0, 0, 1050, 700);
+            
 
-            if (c.gameResult.Substring(0, 8) == "You Lose!" || c.gameResult.Substring(0, 4) == "Draw!")
-            {
-                song.Play();
-
-            }
-
-            else if (c.gameResult.Substring(0, 7) == "You Win!")
+             if (c.gameResult.Substring(0, 8) == "You Win!")
             {
                 song2.Play();
 
+            }
+
+             else
+            {
+                song.Play();
             }
 
 
@@ -251,6 +251,7 @@ namespace WinterBreak2021
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
+            
             if (drawThisBackground == "homeScreen")
             {
                 drawHomeBackground(background, e, openingMusic);
