@@ -25,6 +25,10 @@ namespace WinterBreak2021
 
         }
 
+        /// <summary>
+        /// updates the gameResult instance variable, so it can be used to be drawn on the screen later.
+        /// </summary>
+        /// <param name="playersChoice"></param>
         public void determineWinner(string playersChoice)
         {
             this.playersChoice = playersChoice;

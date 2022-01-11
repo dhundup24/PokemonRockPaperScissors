@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -130,22 +131,26 @@ namespace WinterBreak2021
 
 
 
-        public void drawHomeBackground(object o, PaintEventArgs e)
+        public void drawHomeBackground(object o, PaintEventArgs e, SoundPlayer song)
         {
+            song.Play();
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(background, 0, 0, width, height);
             e.Graphics.DrawImage(gameLogo1, 240, 150, 400, 170);
+
+            //System.Threading.Thread.Sleep(800);
+            
             e.Graphics.DrawImage(gameLogo2, 110, 300, 680, 160);
 
             this.Controls.Add(startButton);
             this.Controls.Add(HowToPlayButton);
 
-
         }
 
-        public void drawBattleScreen(object o, PaintEventArgs e)
+        public void drawBattleScreen(object o,  PaintEventArgs e, SoundPlayer song)
         {
+            song.Play();
 
 
             int width = 900;
@@ -165,16 +170,30 @@ namespace WinterBreak2021
             drawCommandPrompt(e);
         }
 
-        public void drawResultsScreen(PaintEventArgs e)
+        public void drawResultsScreen( PaintEventArgs e, SoundPlayer song, SoundPlayer song2)
         {
+            if(c.gameResult.Substring(0,8) == "You Lose!" || c.gameResult.Substring(0, 5) == "Draw!")
+            {
+            song.Play();
+
+            }
+
+            if (c.gameResult.Substring(0, 7) == "You Win!")
+            {
+                song2.Play();
+
+            }
+
             int width = 1050;
             int height = 700;
             e.Graphics.DrawImage(resultsScreenBackground, 0, 0, width, height);
 
         }
 
-        public void drawHowToPlayScreen(object o, PaintEventArgs e)
+        public void drawHowToPlayScreen(object o, PaintEventArgs e, SoundPlayer song)
         {
+            song.Play();
+
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(howToPlayBackground, 0, 0, width, height);
@@ -216,23 +235,22 @@ namespace WinterBreak2021
         {
             if (drawThisBackground == "homeScreen")
             {
-                drawHomeBackground(background, e);
+                drawHomeBackground(background, e, new SoundPlayer(@"..\..\..\Resources\Music\pokemonRockPaperScissorsOpeningMusic.wav"));
             }
 
             else if (drawThisBackground == "battleScreen")
-            {
-                drawBattleScreen(battleScreen, e);
-                //drawGameResults(e, c.gameResult);
+            {               
+                drawBattleScreen(battleScreen, e, new SoundPlayer(@"..\..\..\Resources\Music\YouWinMusic.wav"));
             }
 
             else if (drawThisBackground == "howToPlayScreen")
             {
-                drawHowToPlayScreen(howToPlayBackground, e);
+                drawHowToPlayScreen(howToPlayBackground, e, new SoundPlayer(@"..\..\..\Resources\Music\pokemonRockPaperScissorsOpeningMusic.wav"));
             }
 
             else if(drawThisBackground == "resultsScreen")
             {
-                drawResultsScreen(e);
+                drawResultsScreen(e, new SoundPlayer(@"..\..\..\Resources\Music\YouLoseMusic.wav"), new SoundPlayer(@"..\..\..\Resources\Music\YouWinMusic.wav"));
                 drawGameResults(e, c.gameResult);
             }
 
