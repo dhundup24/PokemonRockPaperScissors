@@ -25,6 +25,11 @@ namespace WinterBreak2021
 
         }
 
+        public void randomizeCPUchoice()
+        {
+            CPUsChoice = choices[r.Next(choices.Length)];
+        }
+
         /// <summary>
         /// updates the gameResult instance variable, so it can be used to be drawn on the screen later.
         /// </summary>

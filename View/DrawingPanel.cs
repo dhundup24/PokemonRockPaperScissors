@@ -11,33 +11,40 @@ namespace WinterBreak2021
     public class DrawingPanel : Panel
     {
         public string drawThisBackground;
-        private Controller c; 
+        private Controller c;
 
 
-        //These below are for the opening screen
+        //These images below are for the opening screen
         Image background = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameBackground.png");
         Image battleScreen = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameBattleScreen.png");
         Image gameLogo1 = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameLogo.png");
         Image howToPlayButton = Image.FromFile(@"..\..\..\Resources\Images\HowToPlayButton.png");
         Image startButtonImage = Image.FromFile(@"..\..\..\Resources\Images\pokemonGameStartButton.png");
         Image howToPlayImage = Image.FromFile(@"..\..\..\Resources\Images\HowToPlayButton.png");
+        Image resultsScreenBackground = Image.FromFile(@"..\..\..\Resources\Images\resultsScreen.png");
 
 
-        //These below are for the battle screen
+        //These images below are for the battle screen
         Image charizard = Image.FromFile(@"..\..\..\Resources\Images\Charizard.png");
         Image venusaur = Image.FromFile(@"..\..\..\Resources\Images\venusaur.png");
         Image blastoise = Image.FromFile(@"..\..\..\Resources\Images\blastoise.png");
         Image homeButtonImage = Image.FromFile(@"..\..\..\Resources\Images\homeButton.png");
 
-        Image resultsScreenBackground = Image.FromFile(@"..\..\..\Resources\Images\resultsScreen.png");
 
-
+        //All the buttons in the game
         public Button charizardButton = new Button();
         public Button venusaurButton = new Button();
         public Button blastoiseButton = new Button();
         public Button homeButton = new Button();
         public Button startButton = new Button();
         public Button HowToPlayButton = new Button();
+
+        //All the music in the game
+        SoundPlayer openingMusic = new SoundPlayer(@"..\..\..\Resources\Music\pokemonRockPaperScissorsOpeningMusic.wav");
+        SoundPlayer howToPlayMusic = new SoundPlayer(@"..\..\..\Resources\Music\howToPlayMusic.wav");
+        SoundPlayer battleMusic = new SoundPlayer(@"..\..\..\Resources\Music\battleMusic.wav");
+        SoundPlayer youWinMusic = new SoundPlayer(@"..\..\..\Resources\Music\YouWinMusic.wav");
+        SoundPlayer youLoseMusic = new SoundPlayer(@"..\..\..\Resources\Music\YouLoseMusic.wav");
 
 
 
@@ -47,8 +54,9 @@ namespace WinterBreak2021
 
         public DrawingPanel()
         {
+            c = new Controller();
             this.DoubleBuffered = true;
-            
+
             charizard = resizeImage(charizard, new Size(300, 280));
             venusaur = resizeImage(venusaur, new Size(300, 280));
             blastoise = resizeImage(blastoise, new Size(300, 280));
@@ -63,8 +71,18 @@ namespace WinterBreak2021
             HowToPlayButton = CreateGUIButton(howToPlayImage, 732, 611, new Size(166, 78), howToPlayButton_Click);
         }
 
+        public void stopAllMusic()
+        {
+            openingMusic.Stop();
+            battleMusic.Stop();
+            youLoseMusic.Stop();
+            youWinMusic.Stop();
+            howToPlayMusic.Stop();
+        }
+
         private void howToPlayButton_Click(object sender, EventArgs e)
         {
+            stopAllMusic();
             drawThisBackground = "howToPlayScreen";
             this.Invalidate(true);
         }
@@ -72,18 +90,19 @@ namespace WinterBreak2021
         private void startButton_Click(object sender, EventArgs e)
         {
             drawThisBackground = "battleScreen";
+            stopAllMusic();
             this.Invalidate(true);
         }
 
         private void BlastoiseButton_Click(object sender, EventArgs e)
         {
             this.drawThisBackground = "resultsScreen";
-            c = new Controller();
+            c.randomizeCPUchoice();
             c.determineWinner("Blastoise");
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
-
+            stopAllMusic();
             this.Invalidate(true);
 
         }
@@ -93,12 +112,12 @@ namespace WinterBreak2021
         private void VenusaurButton_Click(object sender, EventArgs e)
         {
             this.drawThisBackground = "resultsScreen";
-            c = new Controller();
+            c.randomizeCPUchoice();
             c.determineWinner("Venusaur");
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
-
+            stopAllMusic();
             this.Invalidate(true);
 
 
@@ -107,12 +126,12 @@ namespace WinterBreak2021
         private void CharizardButton_Click(object sender, EventArgs e)
         {
             this.drawThisBackground = "resultsScreen";
-            c = new Controller();
+            c.randomizeCPUchoice();
             c.determineWinner("Charizard");
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
-
+            stopAllMusic();
             this.Invalidate(true);
 
 
@@ -125,6 +144,7 @@ namespace WinterBreak2021
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
+            stopAllMusic();
 
             this.Invalidate(true);
         }
@@ -133,24 +153,23 @@ namespace WinterBreak2021
 
         public void drawHomeBackground(object o, PaintEventArgs e, SoundPlayer song)
         {
-            song.Play();
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(background, 0, 0, width, height);
             e.Graphics.DrawImage(gameLogo1, 240, 150, 400, 170);
 
             //System.Threading.Thread.Sleep(800);
-            
+
             e.Graphics.DrawImage(gameLogo2, 110, 300, 680, 160);
 
             this.Controls.Add(startButton);
             this.Controls.Add(HowToPlayButton);
+            song.Play();
 
         }
 
-        public void drawBattleScreen(object o,  PaintEventArgs e, SoundPlayer song)
+        public void drawBattleScreen(object o, PaintEventArgs e, SoundPlayer song)
         {
-            song.Play();
 
 
             int width = 900;
@@ -166,33 +185,31 @@ namespace WinterBreak2021
             this.Controls.Remove(startButton);
             this.Controls.Remove(HowToPlayButton);
 
-
+            song.Play();
             drawCommandPrompt(e);
         }
 
-        public void drawResultsScreen( PaintEventArgs e, SoundPlayer song, SoundPlayer song2)
+        public void drawResultsScreen(PaintEventArgs e, SoundPlayer song, SoundPlayer song2)
         {
-            if(c.gameResult.Substring(0,8) == "You Lose!" || c.gameResult.Substring(0, 5) == "Draw!")
+            e.Graphics.DrawImage(resultsScreenBackground, 0, 0, 1050, 700);
+
+            if (c.gameResult.Substring(0, 8) == "You Lose!" || c.gameResult.Substring(0, 4) == "Draw!")
             {
-            song.Play();
+                song.Play();
 
             }
 
-            if (c.gameResult.Substring(0, 7) == "You Win!")
+            else if (c.gameResult.Substring(0, 7) == "You Win!")
             {
                 song2.Play();
 
             }
 
-            int width = 1050;
-            int height = 700;
-            e.Graphics.DrawImage(resultsScreenBackground, 0, 0, width, height);
 
         }
 
         public void drawHowToPlayScreen(object o, PaintEventArgs e, SoundPlayer song)
         {
-            song.Play();
 
             int width = 900;
             int height = 690;
@@ -203,6 +220,7 @@ namespace WinterBreak2021
             this.Controls.Remove(HowToPlayButton);
             this.Controls.Add(homeButton);
 
+            song.Play();
             drawInstructions(e);
         }
 
@@ -235,22 +253,22 @@ namespace WinterBreak2021
         {
             if (drawThisBackground == "homeScreen")
             {
-                drawHomeBackground(background, e, new SoundPlayer(@"..\..\..\Resources\Music\pokemonRockPaperScissorsOpeningMusic.wav"));
+                drawHomeBackground(background, e, openingMusic);
             }
 
             else if (drawThisBackground == "battleScreen")
-            {               
-                drawBattleScreen(battleScreen, e, new SoundPlayer(@"..\..\..\Resources\Music\YouWinMusic.wav"));
+            {
+                drawBattleScreen(battleScreen, e, battleMusic);
             }
 
             else if (drawThisBackground == "howToPlayScreen")
             {
-                drawHowToPlayScreen(howToPlayBackground, e, new SoundPlayer(@"..\..\..\Resources\Music\pokemonRockPaperScissorsOpeningMusic.wav"));
+                drawHowToPlayScreen(howToPlayBackground, e, howToPlayMusic);
             }
 
-            else if(drawThisBackground == "resultsScreen")
+            else if (drawThisBackground == "resultsScreen")
             {
-                drawResultsScreen(e, new SoundPlayer(@"..\..\..\Resources\Music\YouLoseMusic.wav"), new SoundPlayer(@"..\..\..\Resources\Music\YouWinMusic.wav"));
+                drawResultsScreen(e, youLoseMusic, youWinMusic);
                 drawGameResults(e, c.gameResult);
             }
 

@@ -16,20 +16,20 @@ namespace WinterBreak2021
     public partial class Form1 : Form
     {
         public SoundPlayer music;
-        
 
 
+        private Controller c;
         private DrawingPanel drawingPanel;
         private const int viewSize = 690;
 
         public Form1()
         {
             InitializeComponent();
-
+            c = new Controller();
             drawingPanel = new DrawingPanel();
 
-            //music = new SoundPlayer(@"..\..\..\Resources\Music\pokemonRockPaperScissorsOpeningMusic.wav");           
-            //music.Play();
+            music = new SoundPlayer(@"..\..\..\Resources\Music\pokemonRockPaperScissorsOpeningMusic.wav");           
+            music.Play();
 
             
             // Set the window size
