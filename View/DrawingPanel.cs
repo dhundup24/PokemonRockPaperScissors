@@ -57,9 +57,9 @@ namespace WinterBreak2021
             c = new Controller();
             this.DoubleBuffered = true;
 
-            charizard = resizeImage(charizard, new Size(300, 280));
+            charizard = resizeImage(charizard, new Size(420, 280));
             venusaur = resizeImage(venusaur, new Size(300, 280));
-            blastoise = resizeImage(blastoise, new Size(300, 280));
+            blastoise = resizeImage(blastoise, new Size(310, 290));
             homeButtonImage = resizeImage(homeButtonImage, new Size(100, 100));
             startButtonImage = resizeImage(startButtonImage, new Size(300, 75));
 
@@ -71,26 +71,55 @@ namespace WinterBreak2021
             HowToPlayButton = CreateGUIButton(howToPlayImage, 732, 611, new Size(166, 78), howToPlayButton_Click);
         }
 
-        public void stopAllMusic()
+        
+        /// <summary>
+        /// plays the specific song at the right time. No need for user input.
+        /// </summary>
+        public void playSong()
         {
-            openingMusic.Stop();
-            battleMusic.Stop();
-            youLoseMusic.Stop();
-            youWinMusic.Stop();
-            howToPlayMusic.Stop();
+            if (this.drawThisBackground == "homeScreen")
+            {
+                openingMusic.Play();
+
+            }
+
+            else if (this.drawThisBackground == "battleScreen")
+            {
+                battleMusic.Play();
+            }
+            else if (this.drawThisBackground == "howToPlayScreen")
+            {
+                howToPlayMusic.Play();
+            }
+            else if (this.drawThisBackground == "resultsScreen")
+            {
+                if (c.result == "You Win!")
+                {
+                    youWinMusic.Play();
+
+                }
+
+                if (c.result == "You Lose!" || c.result == "Draw!")
+                {
+                    youLoseMusic.Play();
+                }
+            }
+
+
+
         }
 
         private void howToPlayButton_Click(object sender, EventArgs e)
         {
-            stopAllMusic();
             drawThisBackground = "howToPlayScreen";
+            playSong();
             this.Invalidate(true);
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
             drawThisBackground = "battleScreen";
-            stopAllMusic();
+            playSong();
             this.Invalidate(true);
         }
 
@@ -99,10 +128,10 @@ namespace WinterBreak2021
             this.drawThisBackground = "resultsScreen";
             c.randomizeCPUchoice();
             c.determineWinner("Blastoise");
+            playSong();
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
-            stopAllMusic();
             this.Invalidate(true);
 
         }
@@ -114,10 +143,10 @@ namespace WinterBreak2021
             this.drawThisBackground = "resultsScreen";
             c.randomizeCPUchoice();
             c.determineWinner("Venusaur");
+            playSong();
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
-            stopAllMusic();
             this.Invalidate(true);
 
 
@@ -128,10 +157,10 @@ namespace WinterBreak2021
             this.drawThisBackground = "resultsScreen";
             c.randomizeCPUchoice();
             c.determineWinner("Charizard");
+            playSong();
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
-            stopAllMusic();
             this.Invalidate(true);
 
 
@@ -139,42 +168,42 @@ namespace WinterBreak2021
 
         private void homeButton_Click(object sender, EventArgs e)
         {
+            c.randomizeCPUchoice();
             this.drawThisBackground = "homeScreen";
+            playSong();
             this.Controls.Remove(homeButton);
             this.Controls.Remove(blastoiseButton);
             this.Controls.Remove(charizardButton);
             this.Controls.Remove(venusaurButton);
-            stopAllMusic();
 
             this.Invalidate(true);
         }
 
 
 
-        public void drawHomeBackground(object o, PaintEventArgs e, SoundPlayer song)
+        public void drawHomeBackground(object o, PaintEventArgs e)
         {
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(background, 0, 0, width, height);
             e.Graphics.DrawImage(gameLogo1, 240, 150, 400, 170);
-
-            //System.Threading.Thread.Sleep(800);
-
+          
             e.Graphics.DrawImage(gameLogo2, 110, 300, 680, 160);
 
             this.Controls.Add(startButton);
             this.Controls.Add(HowToPlayButton);
-            song.Play();
 
         }
 
-        public void drawBattleScreen(object o, PaintEventArgs e, SoundPlayer song)
+
+        public void drawBattleScreen(object o, PaintEventArgs e)
         {
 
 
             int width = 900;
             int height = 690;
             e.Graphics.DrawImage(battleScreen, 0, 0, width, height);
+
 
 
             this.Controls.Add(homeButton);
@@ -185,30 +214,15 @@ namespace WinterBreak2021
             this.Controls.Remove(startButton);
             this.Controls.Remove(HowToPlayButton);
 
-            song.Play();
             drawCommandPrompt(e);
         }
 
-        public void drawResultsScreen(PaintEventArgs e, SoundPlayer song, SoundPlayer song2)
+        public void drawResultsScreen(PaintEventArgs e)
         {
-            e.Graphics.DrawImage(resultsScreenBackground, 0, 0, 1050, 700);
-            
-
-             if (c.gameResult.Substring(0, 8) == "You Win!")
-            {
-                song2.Play();
-
-            }
-
-             else
-            {
-                song.Play();
-            }
-
-
+            e.Graphics.DrawImage(resultsScreenBackground, 0, 0, 1050, 700);           
         }
 
-        public void drawHowToPlayScreen(object o, PaintEventArgs e, SoundPlayer song)
+        public void drawHowToPlayScreen(object o, PaintEventArgs e)
         {
 
             int width = 900;
@@ -220,7 +234,6 @@ namespace WinterBreak2021
             this.Controls.Remove(HowToPlayButton);
             this.Controls.Add(homeButton);
 
-            song.Play();
             drawInstructions(e);
         }
 
@@ -251,26 +264,26 @@ namespace WinterBreak2021
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            
+
             if (drawThisBackground == "homeScreen")
             {
-                drawHomeBackground(background, e, openingMusic);
+                drawHomeBackground(background, e);
             }
 
             else if (drawThisBackground == "battleScreen")
             {
-                drawBattleScreen(battleScreen, e, battleMusic);
+                drawBattleScreen(battleScreen, e);
             }
 
             else if (drawThisBackground == "howToPlayScreen")
             {
-                drawHowToPlayScreen(howToPlayBackground, e, howToPlayMusic);
+                drawHowToPlayScreen(howToPlayBackground, e);
             }
 
             else if (drawThisBackground == "resultsScreen")
             {
-                drawResultsScreen(e, youLoseMusic, youWinMusic);
-                drawGameResults(e, c.gameResult);
+                drawResultsScreen(e);
+                drawGameResults(e, c.gameResultText);
             }
 
             base.OnPaint(e);
@@ -375,10 +388,9 @@ namespace WinterBreak2021
 
             // Create string to draw.
             String drawString1 = "FOR PEOPLE WHO DON'T KNOW WHAT POKEMON IS OR HOW BASIC POKEMON TYPES WORK:" + '\n' +
-                                 "1. Pokemon is a game where you capture pokemon in the wild and raise your own." + '\n' +
-                                 "    Through battling with other pokemon, your pokemon will level up and will soon evolve." + '\n' +
-                                 "2. Every Pokemon has a certain type (fire, water, grass, etc.)." + '\n' +
-                                 "    Some Pokemon of a certain type have an advantage over another pokemon's type." + '\n' +
+                                 
+                                 "2. Every Pokemon has a certain type (fire, water, grass, etc.). Some Pokemon of a certain" + '\n' +
+                                 "    type have an advantage over another pokemon's type." + '\n' +
                                  "    For example, Water type pokemon are strong against fire (and fire is weak to water)." + '\n' +
                                  "    Grass pokemon are strong against water types (and water is weak to grass)" + '\n' +
                                  "    Lastly, Fire pokemon are strong against grass types (and grass is weak to fire)" + '\n' +
@@ -418,7 +430,7 @@ namespace WinterBreak2021
                                  "    different pokemon, which are acutally buttons you can mouse-click on. One is Charizard," + '\n' +
                                  "    a fire type, the red pokemon. Next is Venusaur, a grass type, the green pokemon. Lastly," + '\n' +
                                  "    Blastoise, a water type, the blue pokemon. Using your knowlege of type matchups, you" + '\n' +
-                                 "    will be playing rock paper scissors against a CPU. Have fun!" + '\n' +
+                                 "    will be playing rock paper scissors against a CPU. Have fun!" + '\n' + "" + '\n' +
                                  "SPECIAL THANKS:" + '\n' +
                                  "Carson He and Camron Wilson";
             // Create font and brush.
@@ -429,7 +441,7 @@ namespace WinterBreak2021
             float x3 = 0.0F;
             float y3 = 400.0F;
             float width3 = 900.0F;
-            float height3 = 230.0F;
+            float height3 = 221.0F;
             RectangleF drawRect3 = new RectangleF(x3, y3, width3, height3);
 
             // Draw rectangle to screen.

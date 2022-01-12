@@ -15,8 +15,11 @@ namespace WinterBreak2021
         public string[] choices = { "Charizard", "Blastoise", "Venusaur" };
 
         public Random r;
+        //this var is what text shows on screen when you finish a game
+        public string gameResultText;
 
-        public string gameResult;
+        //this will be used to communicate to drawingPanel who won or who lost or has a tie.
+        public string result;
 
         public Controller()
         {
@@ -27,6 +30,7 @@ namespace WinterBreak2021
 
         public void randomizeCPUchoice()
         {
+            r = new Random();
             CPUsChoice = choices[r.Next(choices.Length)];
         }
 
@@ -43,51 +47,63 @@ namespace WinterBreak2021
                 case "Blastoise":
                     if(CPUsChoice == "Blastoise")
                     {
-                        this.gameResult = "Draw! You and your opponent both used Blastoise!";
+                        this.gameResultText = "Draw! You and your opponent both used Blastoise!";
+                        this.result = "Draw!";
                     }
 
                     if (CPUsChoice == "Venusaur")
                     {
-                        this.gameResult = "You Lose! Your opponent's Venusaur beat your Blastoise!";
+                        this.gameResultText = "You Lose! Your opponent's Venusaur beat your Blastoise!";
+                        this.result = "You Lose!";
                     }
 
                     if (CPUsChoice == "Charizard")
                     {
-                        this.gameResult = "You Win! Your Blastoise beat your opponent's Charizard!";
+                        this.gameResultText = "You Win! Your Blastoise beat your opponent's Charizard!";
+                        this.result = "You Win!";
+
                     }
                     break;
 
                 case "Venusaur":
                     if (CPUsChoice == "Venusaur")
                     {
-                        this.gameResult = "Draw! You and your opponent both used Venusaur!";
+                        this.gameResultText = "Draw! You and your opponent both used Venusaur!";
+                        this.result = "Draw!";
+
                     }
 
                     if (CPUsChoice == "Blastoise")
                     {
-                        this.gameResult = "You Win! Your Venusaur beat your opponent's Blastoise!";
+                        this.gameResultText = "You Win! Your Venusaur beat your opponent's Blastoise!";
+                        this.result = "You Win!";
+
                     }
 
                     if (CPUsChoice == "Charizard")
                     {
-                        this.gameResult = "You Lose! Your opponent's Charizard beat your Venusaur!";
+                        this.gameResultText = "You Lose! Your opponent's Charizard beat your Venusaur!";
+                        this.result = "You Lose!";
                     }
                     break;
 
                 case "Charizard":
                     if (CPUsChoice == "Charizard")
                     {
-                        this.gameResult = "Draw! You and your opponent both used Charizard!";
+                        this.gameResultText = "Draw! You and your opponent both used Charizard!";
+                        this.result = "Draw!";
                     }
 
                     if (CPUsChoice == "Blastoise")
                     {
-                        this.gameResult = "You Lose! Your opponent's Blastoise beat your Charizard!";
+                        this.gameResultText = "You Lose! Your opponent's Blastoise beat your Charizard!";
+                        this.result = "You Lose!";
                     }
 
                     if (CPUsChoice == "Venusaur")
                     {
-                        this.gameResult = "You Win! Your Charizard beat your opponent's Venusaur!";
+                        this.gameResultText = "You Win! Your Charizard beat your opponent's Venusaur!";
+                        this.result = "You Win!";
                     }
                     break;
             }

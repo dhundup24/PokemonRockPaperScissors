@@ -38,8 +38,6 @@ namespace WinterBreak2021
             drawingPanel.Size = new Size(900, viewSize);
             this.Controls.Add(drawingPanel);
             drawingPanel.drawThisBackground = "homeScreen";
-
-
             this.Invalidate(true);
 
         }
